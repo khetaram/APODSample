@@ -1,0 +1,30 @@
+PODS:
+  - Cartography (4.0.0)
+  - Kingfisher (7.1.2)
+  - Realm (10.20.1):
+    - Realm/Headers (= 10.20.1)
+  - Realm/Headers (10.20.1)
+  - RealmSwift (10.20.1):
+    - Realm (= 10.20.1)
+
+DEPENDENCIES:
+  - Cartography
+  - Kingfisher
+  - RealmSwift
+
+SPEC REPOS:
+  trunk:
+    - Cartography
+    - Kingfisher
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
+  Realm: fac5ecd031fcb81171627b74944c885662d4b266
+  RealmSwift: 9b02d25acb46a14756bde9893abb99e2e3675923
+
+PODFILE CHECKSUM: e9811ac4bf78f45cf9b6d200a082a8fa2aadfc57
+
+COCOAPODS: 1.11.2
