@@ -42,16 +42,25 @@ class DatePickerView: UIView {
 
 
         constrain(datePicker, doneButton, self) { datePicker, doneButton, containerView in
-            datePicker.leading == containerView.leading + 16
             datePicker.top == containerView.top + 16
-            datePicker.bottom == containerView.bottom - 16
-            datePicker.height == 30
 
-            doneButton.trailing == containerView.trailing - 16
-            doneButton.top == containerView.top + 16
-            doneButton.bottom == containerView.bottom - 16
-            doneButton.height == 30
+            doneButton.height == 40
             doneButton.width == 70
+
+            if #available(iOS 14.0, *) {
+                // iOS 14 and above inline date picker compact UI
+                datePicker.centerX == containerView.centerX - 35
+                datePicker.bottom == containerView.bottom - 16
+
+                doneButton.centerY == containerView.centerY
+                doneButton.trailing == containerView.trailing
+
+            } else {
+                datePicker.centerX == containerView.centerX
+                doneButton.centerX == containerView.centerX
+                datePicker.bottom == doneButton.top - 16
+                doneButton.bottom == containerView.bottom - 8
+            }
         }
     }
 

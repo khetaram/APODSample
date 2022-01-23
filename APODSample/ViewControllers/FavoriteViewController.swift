@@ -28,6 +28,7 @@ class FavoriteViewController: UIViewController, FavoriteViewOutputContract {
     private func setupUI() {
         navigationItem.title = "My Favorites"
 
+        tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.register(UINib(nibName: "APODTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "APODTableViewCell")
