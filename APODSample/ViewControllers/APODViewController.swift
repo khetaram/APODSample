@@ -84,4 +84,8 @@ class APODViewController: UIViewController, APODViewOutputContract {
     @IBAction func changeDateTapped(_ sender: Any) {
         viewModel.changeDateTapped()
     }
+
+    func showDataForDate(date: Date) {
+        viewModel.dateChanged(date: date)
+    }
 }

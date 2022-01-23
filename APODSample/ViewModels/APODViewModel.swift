@@ -26,15 +26,15 @@ class APODViewModel {
         currentDate = lastViewedStringDate?.dateWith(format: AppConfig.apodDateFormat) ?? Date()
     }
 
-    private func loadData() {
-        if let data: APODModelRealm = realmManager.getObject(forId: currentDate.stringWith(format: AppConfig.apodDateFormat)) {
+    private func loadData(forDate date: Date) {
+        if let data: APODModelRealm = realmManager.getObject(forId: date.stringWith(format: AppConfig.apodDateFormat)) {
             model = data.model
             defaultsManager.save(data.model.date, forKey: .apodLastViewedDate)
             output?.loadUI(result: .success(data: APODModelView(from: data.model)))
             return
         }
 
-        service.getPicOfTheDays(date: currentDate, result: { [weak self] res in
+        service.getPicOfTheDays(date: date, result: { [weak self] res in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch res {
@@ -43,6 +43,7 @@ class APODViewModel {
                 case let .error(error):
                     self.output?.loadUI(result: .error(error))
                 case let .success(data):
+                    self.currentDate = date
                     self.defaultsManager.save(data.date, forKey: .apodLastViewedDate)
                     self.realmManager.insertObject(APODModelRealm(model: data))
                     self.model = data
@@ -53,7 +54,7 @@ class APODViewModel {
 
     // MARK: - Inputs contracts
     func viewWillAppear() {
-        loadData()
+        loadData(forDate: currentDate)
     }
 
     func favoriteButtonTapped(isFavorite: Bool) {
@@ -66,7 +67,6 @@ class APODViewModel {
     }
 
     func dateChanged(date: Date) {
-        currentDate = date
-        loadData()
+        loadData(forDate: date)
     }
 }

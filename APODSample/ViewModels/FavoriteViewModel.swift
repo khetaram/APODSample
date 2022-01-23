@@ -10,6 +10,7 @@ import Foundation
 protocol FavoriteViewOutputContract: AnyObject {
     func showEmptyListUI(show: Bool)
     func reloadData()
+    func showAPODViewController(id: String)
 }
 
 class FavoriteViewModel {
@@ -18,6 +19,15 @@ class FavoriteViewModel {
     private let realmManager = RealmManager.shared
     var favoriteList = [APODModel]()
 
+    private func getFavoriteList() {
+        let modelList: [APODModelRealm] = realmManager.getObjects()
+         favoriteList = modelList.map { $0.model }
+            .filter { $0.isFavorite == true }
+        output?.showEmptyListUI(show: favoriteList.isEmpty)
+        output?.reloadData()
+    }
+
+    // MARK: - Inputs contracts
     func viewWillAppear() {
         getFavoriteList()
     }
@@ -29,11 +39,7 @@ class FavoriteViewModel {
         self.getFavoriteList()
     }
 
-    private func getFavoriteList() {
-        let modelList: [APODModelRealm] = realmManager.getObjects()
-         favoriteList = modelList.map { $0.model }
-            .filter { $0.isFavorite == true }
-        output?.showEmptyListUI(show: favoriteList.isEmpty)
-        output?.reloadData()
+    func didSelectRow(index: Int) {
+        output?.showAPODViewController(id: favoriteList[index].date)
     }
 }

@@ -30,6 +30,7 @@ class FavoriteViewController: UIViewController, FavoriteViewOutputContract {
 
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UINib(nibName: "APODTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "APODTableViewCell")
         view.addSubview(tableView)
@@ -59,9 +60,17 @@ class FavoriteViewController: UIViewController, FavoriteViewOutputContract {
         emptyListLabel.isHidden = !show
         tableView.bringSubviewToFront(emptyListLabel)
     }
+
+    func showAPODViewController(id: String) {
+        if let apodNavVC = tabBarController?.viewControllers?.first as? UINavigationController,
+           let apodVC = apodNavVC.viewControllers.first as? APODViewController {
+            apodVC.showDataForDate(date: id.dateWith(format: AppConfig.apodDateFormat)!)
+        }
+        self.tabBarController?.selectedIndex = 0
+    }
 }
 
-extension FavoriteViewController: UITableViewDataSource {
+extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - TableView datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.favoriteList.count
@@ -76,5 +85,13 @@ extension FavoriteViewController: UITableViewDataSource {
         }
         cell.bindData(model: model)
         return cell
+    }
+
+    // MARK: - TableView delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.viewModel.didSelectRow(index: indexPath.row)
+        }
     }
 }
