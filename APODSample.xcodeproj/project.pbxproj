@@ -14,7 +14,7 @@
 		318E81A1279D2965006FAFD6 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81A0279D2965006FAFD6 /* InfoView.swift */; };
 		318E81A3279D2A05006FAFD6 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81A2279D2A05006FAFD6 /* DatePickerView.swift */; };
 		318E81A5279D31F8006FAFD6 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81A4279D31F8006FAFD6 /* AppColor.swift */; };
-		318E81A7279D3EC9006FAFD6 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81A6279D3EC9006FAFD6 /* StorageManager.swift */; };
+		318E81A7279D3EC9006FAFD6 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81A6279D3EC9006FAFD6 /* RealmManager.swift */; };
 		318E81A9279D3EDE006FAFD6 /* APODModelRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81A8279D3EDE006FAFD6 /* APODModelRealm.swift */; };
 		318E81AB279D549F006FAFD6 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81AA279D549F006FAFD6 /* FavoriteViewController.swift */; };
 		318E81AE279D55F8006FAFD6 /* APODTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318E81AC279D55F8006FAFD6 /* APODTableViewCell.swift */; };
@@ -52,7 +52,7 @@
 		318E81A0279D2965006FAFD6 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		318E81A2279D2A05006FAFD6 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		318E81A4279D31F8006FAFD6 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
-		318E81A6279D3EC9006FAFD6 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		318E81A6279D3EC9006FAFD6 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		318E81A8279D3EDE006FAFD6 /* APODModelRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODModelRealm.swift; sourceTree = "<group>"; };
 		318E81AA279D549F006FAFD6 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		318E81AC279D55F8006FAFD6 /* APODTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				318E819C279D1895006FAFD6 /* UserDefaultManager.swift */,
-				318E81A6279D3EC9006FAFD6 /* StorageManager.swift */,
+				318E81A6279D3EC9006FAFD6 /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 				31ACCC222792CE480076F158 /* RequestHeader.swift in Sources */,
 				318E81A5279D31F8006FAFD6 /* AppColor.swift in Sources */,
 				31ACCC262792CE840076F158 /* HttpRequest.swift in Sources */,
-				318E81A7279D3EC9006FAFD6 /* StorageManager.swift in Sources */,
+				318E81A7279D3EC9006FAFD6 /* RealmManager.swift in Sources */,
 				318E819D279D1895006FAFD6 /* UserDefaultManager.swift in Sources */,
 				31ACCC282792D06D0076F158 /* AppConfig.swift in Sources */,
 				31ACCC0A27917C9F0076F158 /* APODViewController.swift in Sources */,

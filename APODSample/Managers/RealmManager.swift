@@ -1,5 +1,5 @@
 //
-//  StorageManager.swift
+//  RealmManager.swift
 //  APODSample
 //
 //  Created by Khetaram Kumawat on 23/01/22.
@@ -9,8 +9,10 @@ import Foundation
 
 import RealmSwift
 
-class StorageManager {
-    static let shared = StorageManager()
+class RealmManager {
+    static let shared = RealmManager()
+
+    private init() {}
 
     func insertObject<T: Object>(_ object: T) {
         let realm = try! Realm()

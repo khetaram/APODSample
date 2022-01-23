@@ -13,6 +13,8 @@ protocol APODViewOutputContract: AnyObject {
 }
 
 class APODViewModel {
+    private let realmManager = RealmManager.shared
+    private let defaultsManager = UserDefaultManager.shared
     private let service = APODService()
     private var model: APODModel!
 
@@ -20,14 +22,14 @@ class APODViewModel {
     private var currentDate: Date
 
     init() {
-        let lastViewedStringDate: String? = UserDefaultManager.shared.get(.apodLastViewedDate)
+        let lastViewedStringDate: String? = defaultsManager.get(.apodLastViewedDate)
         currentDate = lastViewedStringDate?.dateWith(format: AppConfig.apodDateFormat) ?? Date()
     }
 
     private func loadData() {
-        if let data: APODModelRealm = StorageManager.shared.getObject(forId: currentDate.stringWith(format: AppConfig.apodDateFormat)) {
+        if let data: APODModelRealm = realmManager.getObject(forId: currentDate.stringWith(format: AppConfig.apodDateFormat)) {
             model = data.model
-            UserDefaultManager.shared.save(data.model.date, forKey: .apodLastViewedDate)
+            defaultsManager.save(data.model.date, forKey: .apodLastViewedDate)
             output?.loadUI(result: .success(data: APODModelView(from: data.model)))
             return
         }
@@ -41,8 +43,8 @@ class APODViewModel {
                 case let .error(error):
                     self.output?.loadUI(result: .error(error))
                 case let .success(data):
-                    UserDefaultManager.shared.save(data.date, forKey: .apodLastViewedDate)
-                    StorageManager.shared.insertObject(APODModelRealm(model: data))
+                    self.defaultsManager.save(data.date, forKey: .apodLastViewedDate)
+                    self.realmManager.insertObject(APODModelRealm(model: data))
                     self.model = data
                     self.output?.loadUI(result: .success(data: APODModelView(from: data)))
                 }
@@ -56,7 +58,7 @@ class APODViewModel {
 
     func favoriteButtonTapped(isFavorite: Bool) {
         model.isFavorite = isFavorite
-        StorageManager.shared.insertObject(APODModelRealm(model: model))
+        realmManager.insertObject(APODModelRealm(model: model))
     }
 
     func changeDateTapped() {

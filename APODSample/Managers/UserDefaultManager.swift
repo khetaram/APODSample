@@ -12,6 +12,8 @@ class UserDefaultManager {
 
     private let defaults = UserDefaults.standard
 
+    private init() { }
+
     enum Keys {
         case apodLastViewedDate
 
